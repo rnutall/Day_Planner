@@ -17,7 +17,7 @@ localStorage.getItem(timestamp, memo);
 console.log(memo)
 
 
-}) 
+}); 
 
   //
   // TODO: Add code to apply the past, present, or future class to each time
@@ -28,22 +28,27 @@ console.log(memo)
   var time = dayjs().format("HH");
   var timestamp = $(".container-lg").children("div");
 console.log(timestamp);
-for (i = 0 ; i < timestamp; i++);
+for (i = 0 ; i < timestamp.length; i++) {
 var t = "#" + timestamp[i]["id"];
 var tHour = t.split("-");
 console.log(tHour[1]);
 
-var time = 7;
+
 
 if (tHour[1] < time) {
-  console.log("past");
+ // console.log("past");
   $(t).addClass("past");
-} else if (t[1]) == time;) {
- $(t).addClass("present"); {
-  else if (t[1])
+} else if (tHour[1] == time) {
+ $(t).addClass("present");
+} 
+  else if (tHour[1] > time) {
+    $(t).addClass("future");
 
-}
-}
+  }}
+
+
+
+
 
 
 
@@ -53,6 +58,17 @@ if (tHour[1] < time) {
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
+  
+  for (i = 0 ; i < timestamp.length; i++) {
+    var hour = timestamp[i]["id"];
+    var text = localStorage.getItem(hour);
+    if (text != null) {
+      $("#" + hour).children("textarea").val(text);
+    }
+
+  }
+
+
   //
   // TODO: Add code to display the current date in the header of the page.
 $("#currentDay").text(dayjs().format('MMMM DD, YYYY'))
